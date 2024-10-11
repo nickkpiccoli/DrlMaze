@@ -156,6 +156,7 @@ while not done:
     elif info["fallen"]:
         env.reset()
         done = False
+        steps=0
         print("Fail")
 
     steps += 1
