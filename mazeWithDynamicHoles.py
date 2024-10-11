@@ -76,10 +76,10 @@ class MazeWorldEnv(gym.Env):
         self.previous_positions = []
         self._isfallen = False
 
-        # Definire le celle da escludere (celle iniziale, finale e adiacenti)
+        #cells where holes shouldn't be placed
         exclude_positions = [self._agent_pos, self._objective_pos]
 
-        # Celle adiacenti alla posizione iniziale
+        #cells near starting position
         adjacent_initial = [
             self._agent_pos + np.array([1, 0]),
             self._agent_pos + np.array([0, 1]),
@@ -88,7 +88,7 @@ class MazeWorldEnv(gym.Env):
             self._agent_pos + np.array([-1, 1]),
         ]
 
-        # Celle adiacenti alla posizione finale
+        #cells near end position
         adjacent_final = [
             self._objective_pos + np.array([-1, 0]),
             self._objective_pos + np.array([0, -1]),
@@ -97,10 +97,9 @@ class MazeWorldEnv(gym.Env):
             self._objective_pos + np.array([1, -1]),
         ]
 
-        # Aggiungere le celle da evitare
         exclude_positions += adjacent_initial + adjacent_final
 
-        # Generare casualmente le posizioni delle buche evitando quelle escluse
+        #randomly generating holes position
         num_holes = len(self.hole_positions)
         self.hole_positions = []
         while len(self.hole_positions) < num_holes:
