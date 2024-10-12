@@ -6,16 +6,6 @@ gym.register(
     entry_point="Env.MazeEnvStatHoles:MazeWorldEnv",
 )
 
-def train_maze_model():
-    env = gym.make("MazeWorld-v1")
-    print("Starting to train model...")
-    model = PPO("MultiInputPolicy", "MazeWorld-v1", verbose=1).learn(50000)
-    model.save("models/ppo_maze_world_with_same_holes")
-    print("Model trained!")
-
-#train_maze_model()
-
-
 model = PPO.load("models/ppo_maze_world_with_same_holes")
 
 env = gym.make("MazeWorld-v1")

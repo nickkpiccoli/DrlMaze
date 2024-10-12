@@ -1,6 +1,7 @@
 import tkinter as tk
 import gymnasium as gym
 from stable_baselines3 import PPO
+
 gym.register(
     id="MazeWorld-v2",
     entry_point="Env.MazeEnvDynHoles:MazeWorldEnv",

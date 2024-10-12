@@ -8,12 +8,6 @@ gym.register(
     entry_point="Env.MazeEnvNoHoles:MazeWorldEnv",
 )
 
-def train_model():
-    env = gym.make("MazeWorld-v0")
-    model = DQN("MultiInputPolicy", "MazeWorld-v0", verbose=1).learn(50000)
-    model.save("dqn_maze_world")
-    print("model trained")
-
 #trying the model with a simple simulation
 model = DQN.load("dqn_maze_world")
 
