@@ -16,7 +16,7 @@ def train_maze_model():
 #train_maze_model()
 
 
-model = PPO.load("models/ppo_maze_world_with_dyn_holes_repstep_v3")
+model = PPO.load("models/ppo_maze_world_with_same_holes")
 
 env = gym.make("MazeWorld-v1")
 
