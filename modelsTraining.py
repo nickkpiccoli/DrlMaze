@@ -16,33 +16,37 @@ gym.register(
 
 def train_DQN_model(name, envname):
     env = gym.make(envname)
-    print("Starting to train model...")
+    print("Starting to train DQN model...")
     model = DQN("MultiInputPolicy", envname, verbose=1).learn(50000)
     model.save(f"models/dqn_{name}")
     print("model trained")
 
 def train_DQN_model_cyclic(name, envname):
     env = gym.make(envname)
+    l = 1
+    h = 10
     for i in range(1,10):
-        print("Starting to train model...")
+        print(f"Training DQN model phase {i}/{h}...")
         model = DQN("MultiInputPolicy", envname, verbose=1, tensorboard_log="log",ent_coef=0.01).learn(50000*i, reset_num_timesteps=False)
         model.save(f"models/dqn_{name}")
-        print("Model trained!")
+        print(f"phase {i}/{h} concluded")
 
 def train_PPO_model(name, envname):
     env = gym.make(envname)
-    print("Starting to train model...")
+    print("Starting to train PPO model...")
     model = PPO("MultiInputPolicy", envname, verbose=1).learn(500)
     model.save(f"models/ppo_{name}")
     print("model trained")
 
 def train_PPO_model_cyclic(name,envname):
     env = gym.make(envname)
-    for i in range(1,10):
-        print("Starting to train model...")
+    l = 1
+    h = 10
+    for i in range(l,h):
+        print(f"Training PPO model, phase {i}/{h}...")
         model = PPO("MultiInputPolicy", envname, verbose=1, tensorboard_log="log",ent_coef=0.01).learn(50000*i, reset_num_timesteps=False)
         model.save(f"models/ppo_{name}")
-        print("Model trained!")
+        print(f"phase {i}/{h} concluded")
 
 environments = {
     "v0": "MazeWorld-v0",
