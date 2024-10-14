@@ -75,28 +75,21 @@ class MazeWorldEnv(gym.Env):
         self.previous_positions = []
         self._isfallen = False
 
-        #cells where holes shouldn't be placed
-        exclude_positions = [self._agent_pos, self._objective_pos]
-
-        #cells near starting position
-        adjacent_initial = [
+        #cells where holes shouldn't be placed, includes cells near starting and objective position
+        exclude_positions = [
+            self._agent_pos, 
+            self._objective_pos,
             self._agent_pos + np.array([1, 0]),
             self._agent_pos + np.array([0, 1]),
             self._agent_pos + np.array([1, 1]),
             self._agent_pos + np.array([1, -1]),
             self._agent_pos + np.array([-1, 1]),
-        ]
-
-        #cells near end position
-        adjacent_final = [
             self._objective_pos + np.array([-1, 0]),
             self._objective_pos + np.array([0, -1]),
             self._objective_pos + np.array([-1, -1]),
             self._objective_pos + np.array([-1, 1]),
             self._objective_pos + np.array([1, -1]),
         ]
-
-        exclude_positions += adjacent_initial + adjacent_final
 
         #randomly generating holes position
         num_holes = len(self.hole_positions)

@@ -9,13 +9,13 @@ gym.register(
 )
 
 #trying the model with a simple simulation
-model = DQN.load("dqn_maze_world")
+model = DQN.load("models/dqn_maze_world")
 
 env = gym.make("MazeWorld-v0")
 
 obs, info = env.reset()
 
-done = False
+terminated = False
 steps = 0
 
 print("Agent starting to move:")
