@@ -1,5 +1,5 @@
 numpy==1.26.4
-tensorflow==2.17.0
+tensorflow==2.16.2
 stable-baselines3==2.3.2
 tk
 typing
